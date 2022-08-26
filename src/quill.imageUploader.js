@@ -1,5 +1,6 @@
 import LoadingImage from "./blots/image.js";
 
+
 import "./quill.imageUploader.css";
 
 class ImageUploader {
@@ -155,7 +156,7 @@ class ImageUploader {
         this.quill.insertEmbed(
             range.index,
             LoadingImage.blotName,
-            `${url}`,
+            null,
             "user"
         );
     }

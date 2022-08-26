@@ -7,9 +7,6 @@ class LoadingImage extends InlineBlot {
         const node = super.create(src);
         if (src === true) return node;
 
-        const image = document.createElement("img");
-        image.setAttribute("src", src);
-        node.appendChild(image);
         return node;
     }
     deleteAt(index, length) {

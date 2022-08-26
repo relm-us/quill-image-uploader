@@ -4,12 +4,6 @@
     "repository": "https://github.com/noeloconnell/quill-image-uploader.git",
     "description": "A module for Quill rich text editor to allow images to be uploaded to a server instead of being base64 encoded",
     "main": "src/quill.imageUploader.js",
-    "eslintConfig": {
-        "extends": "airbnb",
-        "env": {
-            "browser": true
-        }
-    },
     "scripts": {
         "watch": "webpack --watch --progress --mode production",
         "start": "webpack-dev-server --mode development",
