@@ -1,6 +1,5 @@
 import LoadingImage from "./blots/image.js";
 
-
 import "./quill.imageUploader.css";
 
 class ImageUploader {
@@ -123,8 +122,7 @@ class ImageUploader {
             "load",
             () => {
                 if (!isUploadReject) {
-                    let base64ImageSrc = fileReader.result;
-                    this.insertBase64Image(base64ImageSrc);
+                    this.insertPlaceholderImage();
                 }
             },
             false
@@ -140,7 +138,7 @@ class ImageUploader {
             },
             (error) => {
                 isUploadReject = true;
-                this.removeBase64Image();
+                this.removePlaceholderImage();
                 console.warn(error);
             }
         );
@@ -151,12 +149,12 @@ class ImageUploader {
         this.readAndUploadFile(file);
     }
 
-    insertBase64Image(url) {
+    insertPlaceholderImage() {
         const range = this.range;
         this.quill.insertEmbed(
             range.index,
             LoadingImage.blotName,
-            null,
+            "",
             "user"
         );
     }
@@ -164,7 +162,7 @@ class ImageUploader {
     insertToEditor(url) {
         const range = this.range;
         // Delete the placeholder image
-        this.quill.deleteText(range.index, 3, "user");
+        this.quill.deleteText(range.index, 2, "user");
         // Insert the server saved image
         this.quill.insertEmbed(range.index, "image", `${url}`, "user");
 
@@ -172,9 +170,9 @@ class ImageUploader {
         this.quill.setSelection(range, "user");
     }
 
-    removeBase64Image() {
+    removePlaceholderImage() {
         const range = this.range;
-        this.quill.deleteText(range.index, 3, "user");
+        this.quill.deleteText(range.index, 2, "user");
     }
 }
 
